@@ -1,0 +1,22 @@
+services:
+  clamav:
+    image: clamav/clamav:latest
+    container_name: clamav
+    restart: unless-stopped
+    environment:
+      - CLAMD_STARTUP_TIMEOUT=180
+    volumes:
+      - clamav-db:/var/lib/clamav
+    ports:
+      - "3310:3310"   # clamd TCP socket
+
+  freshclam:
+    image: clamav/clamav:latest
+    container_name: freshclam
+    command: freshclam -d --foreground=true
+    restart: unless-stopped
+    volumes:
+      - clamav-db:/var/lib/clamav
+
+volumes:
+  clamav-db:
