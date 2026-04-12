@@ -1,0 +1,11 @@
+services:
+  cloudflare-ddns:
+    image: oznu/cloudflare-ddns:latest
+    container_name: cloudflare-ddns
+    restart: unless-stopped
+    environment:
+      - API_KEY=your_cloudflare_api_token
+      - ZONE=yourdomain.com
+      - SUBDOMAIN=home
+      - PROXIED=false        # true if you want Cloudflare proxy (orange cloud)
+      - TTL=1                # auto
