@@ -1,0 +1,28 @@
+services:
+  nginx:
+    image: jc21/nginx-proxy-manager:stable
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "81:81"
+    volumes:
+      #- ./nginx/conf.d:/etc/nginx/conf.d:ro
+      #- ./nginx/certs:/etc/nginx/certs:ro
+      #- ./nginx/logs:/var/log/nginx
+      
+      - npm_data:/data
+      - npm_letsencrypt:/etc/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    #networks:
+    #  - proxy
+
+volumes:
+  npm_data:
+  npm_letsencrypt:
+    
+#networks:
+  #proxy:
+    #driver: bridge
+
