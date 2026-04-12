@@ -1,0 +1,8 @@
+services:
+  myapp:
+    image: duplicati/duplicati:latest
+    volumes:
+      - /srv/duplicati/data:/data
+    environment:
+      SETTINGS_ENCRYPTION_KEY: "gr@mm1TT"
+      DUPLICATI__WEBSERVICE_PASSWORD: "gr@mm1TT"
