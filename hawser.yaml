@@ -1,0 +1,39 @@
+services:
+  hawser:
+    container_name: hawser
+    image: ghcr.io/finsys/hawser:${IMAGE_TAG}
+    restart: always
+
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+
+      # Required for agent authentication
+      - TOKEN=${TOKEN}
+
+      # Dockhand server URL (required for edge mode)
+      - DOCKHAND_SERVER_URL=${DOCKHAND_SERVER_URL}
+
+      # Optional tuning
+      - LOG_LEVEL=${LOG_LEVEL}            # debug | info | warn | error
+      #- AGENT_NAME=${AGENT_NAME}          # recommended: hostname
+      #- TLS_SKIP_VERIFY=${TLS_SKIP_VERIFY}
+      #- HEARTBEAT_INTERVAL=${HEARTBEAT_INTERVAL}
+
+      # TLS (optional)
+      #- CA_CERT=${CA_CERT}
+      #- TLS_CERT=${TLS_CERT}
+      #- TLS_KEY=${TLS_KEY}
+
+    volumes:
+      #- ${LOCVOL1}hawser:/certs
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    ports:
+      - "2376:2376"   # disable if running in edge mode
+
+    networks:
+      default:
+        #name: ${CONNET}
+        #external: true
