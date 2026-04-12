@@ -23,7 +23,7 @@ services:
       - "9200:9200"
 
   graylog:
-    image: graylog/graylog:6.3.11
+    image: graylog/graylog:6.2.14
     container_name: graylog
     depends_on:
       - mongodb
