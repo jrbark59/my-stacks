@@ -1,0 +1,54 @@
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: graylog-mongo
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+
+  opensearch:
+    image: opensearchproject/opensearch:2.11.1
+    container_name: graylog-opensearch
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - os_data:/usr/share/opensearch/data
+    ports:
+      - "9200:9200"
+
+  graylog:
+    image: graylog/graylog:latest
+    container_name: graylog
+    depends_on:
+      - mongodb
+      - opensearch
+    environment:
+      # Required secrets (use .env or replace inline)
+      - GRAYLOG_PASSWORD_SECRET=${GRAYLOG_PASSWORD_SECRET}
+      - GRAYLOG_ROOT_PASSWORD_SHA2=${GRAYLOG_ROOT_PASSWORD_SHA2}
+
+      # Core config
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://localhost:9000/
+      - GRAYLOG_MONGODB_URI=mongodb://mongodb:27017/graylog
+      - GRAYLOG_OPENSEARCH_HOSTS=http://opensearch:9200
+
+    ports:
+      - "9000:9000"     # Web UI
+      - "1514:1514"     # Syslog TCP
+      - "1514:1514/udp" # Syslog UDP
+      - "12201:12201"   # GELF TCP
+      - "12201:12201/udp"
+    restart: unless-stopped
+    volumes:
+      - graylog_data:/usr/share/graylog/data
+
+volumes:
+  mongo_data:
+  os_data:
+  graylog_data:
