@@ -1,0 +1,18 @@
+services:
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    environment:
+      SETTINGS_ENCRYPTION_KEY: "gr@mm1TT"
+      DUPLICATI__WEBSERVICE_PASSWORD: "gr@mm1TT"      
+      - PUID=1000 # Your user ID
+      - PGID=1000 # Your group ID
+      - TZ=America/New_York # Your timezone, e.g., America/New_York
+      #- CLI_ARGS= # Optional command-line arguments
+    volumes:
+      - /srv/duplicati/config:/config # Stores Duplicati's configuration and database
+      #- /backups:/backups # Mount point for local backup destination
+      #- /path/to/source/data:/source # Mount point for the data you want to back up
+    ports:
+      - "8200:8200" # Exposes the web UI port
+    restart: unless-stopped
