@@ -1,0 +1,17 @@
+services:
+  nut-server:
+    image: ghcr.io/tigattack/nut-upsd:latest
+    container_name: nut-server
+    restart: unless-stopped
+    privileged: true
+    environment:
+      - TZ=America/New_York
+    ports:
+      - "3493:3493"
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+    volumes:
+      - /DATA/AppData/nut/ups.conf:/etc/nut/ups.conf
+      - /DATA/AppData/nut/upsd.conf:/etc/nut/upsd.conf
+      - /DATA/AppData/nut/upsd.users:/etc/nut/upsd.users
+      - /DATA/AppData/nut/upsmon.conf:/etc/nut/upsmon.conf
