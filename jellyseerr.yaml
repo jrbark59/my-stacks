@@ -1,0 +1,13 @@
+services:
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest # or seerr/seerr:latest
+    container_name: jellyseerr
+    restart: always
+    ports:
+      - "5056:5055" # Maps host port 5056 to container port 5055 (Jellyseerr default)
+    environment:
+      - PUID=3000 # Replace with your user ID (e.g., found with 'id -u')
+      - PGID=3000 # Replace with your group ID (e.g., found with 'id -g')
+      - TZ=America/New_York # Replace with your specific timezone
+    volumes:
+      - /mnt/STORAGE_24TB/appdata/jellyseerr/config:/app/config # Host path for configuration data
