@@ -1,13 +1,13 @@
 services:
   mongodb:
-    image: mongo:6.0
+    image: mongo:7.0
     container_name: graylog-mongo
     restart: unless-stopped
     volumes:
       - mongo_data:/data/db
 
   opensearch:
-    image: opensearchproject/opensearch:2.0.0
+    image: opensearchproject/opensearch:2.15
     container_name: graylog-opensearch
     environment:
       - discovery.type=single-node
@@ -24,7 +24,7 @@ services:
       - "9200:9200"
 
   graylog:
-    image: graylog/graylog:6.2.14
+    image: graylog/graylog:6.3.11
     container_name: graylog
     depends_on:
       - mongodb
