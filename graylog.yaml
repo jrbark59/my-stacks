@@ -44,6 +44,10 @@ services:
       - "9000:9000"     # Web UI
       - "1514:1514"     # Syslog TCP
       - "1514:1514/udp" # Syslog UDP
+      - "1515:1515"
+      - "1515:1515/udp"
+      - "1516:1516"
+      - "1516:1516/udp"
       - "12201:12201"   # GELF TCP
       - "12201:12201/udp"
     restart: unless-stopped
