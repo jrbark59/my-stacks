@@ -36,7 +36,8 @@ services:
       # Core config
       - GRAYLOG_HTTP_EXTERNAL_URI=http://localhost:9000/
       - GRAYLOG_MONGODB_URI=mongodb://mongodb:27017/graylog
-      - GRAYLOG_OPENSEARCH_HOSTS=http://172.60.4.3:9200
+      - GRAYLOG_OPENSEARCH_HOSTS=http://opensearch:9200
+      - GRAYLOG_ELASTICSEARCH_HOSTS=http://opensearch:9200
 
     ports:
       - "9000:9000"     # Web UI
