@@ -10,6 +10,9 @@ services:
     image: opensearchproject/opensearch:2.15.0
     container_name: graylog-opensearch
     environment:
+      # Required secrets (use .env or replace inline)
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=${OPENSEARCH_INITIAL_ADMIN_PASSWORD}
+
       - discovery.type=single-node
       - bootstrap.memory_lock=true
       - "OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g"
