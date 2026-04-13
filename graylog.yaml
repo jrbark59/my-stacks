@@ -7,7 +7,7 @@ services:
       - mongo_data:/data/db
 
   opensearch:
-    image: opensearchproject/opensearch:2.15
+    image: opensearchproject/opensearch:2.15.x
     container_name: graylog-opensearch
     environment:
       - discovery.type=single-node
