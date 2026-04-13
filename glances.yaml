@@ -61,38 +61,3 @@ services:
     privileged: false
     hostname: glances
     cpu_shares: 90
-x-casaos:
-  architectures:
-    - amd64
-    - arm64
-  author: joaobosconff
-  category: Utility
-  description:
-    en_us: Glances is an open-source system cross-platform monitoring tool. It
-      allows real-time monitoring of various aspects of your system such as CPU,
-      memory, disk, network usage etc.
-    pt_br: Glances é uma ferramenta de monitoramento de sistema de plataforma
-      cruzada de código aberto. Ele permite o monitoramento em tempo real de
-      vários aspectos do seu sistema, como CPU, memória, disco, uso da rede,
-      etc.
-    zh_cn: Glances 是一个开源的跨平台系统监控工具。它允许实时监控系统的各个方面，如 CPU、内存、磁盘、网络使用情况等。
-  developer: Nicolas Hennion
-  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Glances/icon.png
-  index: /
-  is_uncontrolled: false
-  main: glances
-  port_map: "61208"
-  screenshot_link:
-    - https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Glances/screenshot-1.png
-  store_app_id: glances
-  tagline:
-    en_us: Cross-platform monitoring tool.
-    pt_br: Ferramenta de monitoramento multiplataforma.
-    zh_cn: 跨平台监控工具
-  title:
-    en_us: Glances
-    pt_br: Glances
-    zh_cn: Glances
-    custom: ""
-  hostname: ""
-  scheme: http
