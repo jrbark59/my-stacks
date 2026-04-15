@@ -1,0 +1,19 @@
+services:
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:latest
+    container_name: syncthing
+    hostname: syncthing # Helps identify the device in the Syncthing mesh
+    environment:
+      - PUID=1000 # Your local User ID (run 'id' in terminal)
+      - PGID=1000 # Your local Group ID
+      - TZ=Etc/UTC
+    volumes:
+      - /path/to/config:/config         # Stores Syncthing settings and database
+      - /path/to/data1:/data1           # Example sync folder 1
+      - /path/to/data2:/data2           # Example sync folder 2
+    ports:
+      - 8384:8384                       # Web UI port
+      - 22000:22000/tcp                 # File transfer port (TCP)
+      - 22000:22000/udp                 # File transfer port (QUIC)
+      - 21027:21027/udp                 # Local discovery port
+    restart: unless-stopped
