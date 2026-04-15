@@ -6,10 +6,5 @@ services:
     ports:
       # <Host Port>:<Container Port>
       - 3001:3001
-    deploy:
-      replicas: 1
-      placement:
-        constraints:
-          - node.labels.shemp == true
-      restart_policy:
-        condition: on-failure
+    restart_policy:
+      condition: on-failure
