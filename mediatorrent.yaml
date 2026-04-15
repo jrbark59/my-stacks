@@ -1,1 +1,20 @@
 # mediatorrent
+
+services:
+  emby:
+    image: emby/embyserver:latest
+    container_name: embyserver
+    environment:
+      - UID=1000 # The user ID to run as (check with 'id' command)
+      - GID=1000 # The group ID to run as
+      - GIDLIST=100 # Optional: list of additional GIDs (e.g., for GPU access)
+    volumes:
+      - /path/to/config:/config # Configuration data
+      - /path/to/movies:/data/movies # Your movie library
+      - /path/to/tvshows:/data/tvshows # Your TV show library
+    ports:
+      - 8096:8096 # HTTP port
+      - 8920:8920 # HTTPS port (optional)
+    devices:
+      - /dev/dri:/dev/dri # Optional: Required for Intel GPU hardware transcoding
+    restart: unless-stopped
