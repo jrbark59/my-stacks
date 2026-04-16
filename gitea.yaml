@@ -1,7 +1,7 @@
 services:
   server:
     image: docker.gitea.com/gitea:1.25.5-rootless
-    restart: always
+    restart: unless-stopped
     volumes:
       - /srv/gitea/data:/var/lib/gitea
       - /srv/gitea/config:/etc/gitea
