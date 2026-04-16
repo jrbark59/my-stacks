@@ -3,10 +3,10 @@ services:
     image: docker.gitea.com/gitea:1.25.5-rootless
     restart: always
     volumes:
-      - ./data:/var/lib/gitea
-      - ./config:/etc/gitea
+      - /srv/gitea/data:/var/lib/gitea
+      - /srv/gitea/config:/etc/gitea
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - "3000:3000"
+      - "3333:3000"
       - "2222:2222"
